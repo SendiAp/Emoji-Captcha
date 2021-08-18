@@ -21,8 +21,9 @@ CaptchaDB = {}
 
 @CaptchaBot.on_message(filters.command("start"))
 async def start_handler(_, event: Message):
-    await event.reply_text("Hi, I am captcha bot by @AbirHasan2005.")
-
+    await event.reply_text(f"Haii!!**Saya Adalah Bot Captcha Yang Canggih**.\n\n"
+                           f"__Captcha ini Dengan Variasi Emoji,Kalian Hanya Menebak Emoji Yang Ada Digambar__\n"
+                           f"__Lalu Kalian Menekan Tombol Yang Disediakan__.")
 
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
@@ -48,8 +49,8 @@ async def welcome_handler(bot: Client, event: Message):
             try:
                 await bot.send_message(
                     chat_id=event.chat.id,
-                    text=f"{event.from_user.mention} again joined group without verifying!\n\n"
-                         f"He can try again after 10 minutes.",
+                    text=f"{event.from_user.mention} lagi bergabung dengan grup tanpa memverifikasi!\n\n"
+                         f"Dia bisa mencoba lagi setelah 10 Menit.",
                     disable_web_page_preview=True
                 )
                 await bot.restrict_chat_member(
@@ -71,9 +72,9 @@ async def welcome_handler(bot: Client, event: Message):
             )
             await bot.send_message(
                 chat_id=event.chat.id,
-                text=f"{event.from_user.mention}, to chat here, please verify that you are not a robot.",
+                text=f"{event.from_user.mention}, untuk mengobrol di sini, harap verifikasi bahwa Anda bukan robot",
                 reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton("Verify Now", callback_data=f"startVerify_{str(event.from_user.id)}")]
+                    [InlineKeyboardButton("ᴋʟɪᴋ ᴅɪꜱɪɴɪ", callback_data=f"startVerify_{str(event.from_user.id)}")]
                 ])
             )
     except:
@@ -85,9 +86,9 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
     if cb.data.startswith("startVerify_"):
         __user = cb.data.split("_", 1)[-1]
         if cb.from_user.id != int(__user):
-            await cb.answer("This Message is Not For You!", show_alert=True)
+            await cb.answer("Pesan Ini Bukan Untuk Anda!", show_alert=True)
             return
-        await cb.message.edit("Generating Captcha ...")
+        await cb.message.edit("Menghasilkan Captcha...")
         print("Fetching Captcha JSON Data ...")
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://api.abirhasan.wtf/captcha?token={Config.CAPTCHA_API_TOKEN}") as res:
@@ -98,7 +99,7 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
                             await bot.unban_chat_member(chat_id=cb.message.chat.id, user_id=cb.from_user.id)
                     except:
                         pass
-                    await cb.message.edit("Unable to get Captcha!")
+                    await cb.message.edit("Tidak bisa mendapatkan Captcha!")
                     return
                 data = await res.json()
                 print("Done!")
@@ -114,7 +115,7 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
                     if __emojis[a] in _emojis:
                         _emojis.remove(__emojis[a])
                 show = __emojis
-                print("Appending New Emoji List ...")
+                print("Menambahkan Daftar Emoji Baru ...")
                 for b in range(9):
                     show.append(_emojis[b])
                 print("Randomizing ...")
@@ -157,13 +158,13 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
         __emoji = cb.data.rsplit("_", 1)[-1]
         __user = cb.data.split("_")[1]
         if cb.from_user.id != int(__user):
-            await cb.answer("This Message is Not For You!", show_alert=True)
+            await cb.answer("Pesan Ini Bukan Untuk Anda!", show_alert=True)
             return
         if cb.from_user.id not in CaptchaDB:
-            await cb.answer("Try Again After Re-Join!", show_alert=True)
+            await cb.answer("Coba Lagi Setelah Bergabung Kembali!", show_alert=True)
         if __emoji not in CaptchaDB.get(cb.from_user.id).get("emojis"):
             CaptchaDB[cb.from_user.id]["mistakes"] += 1
-            await cb.answer("You pressed wrong emoji!", show_alert=True)
+            await cb.answer("Anda salah menekan emoji!", show_alert=True)
             n = 3 - CaptchaDB[cb.from_user.id]['mistakes']
             if n == 0:
                 await cb.message.edit_caption(f"{cb.from_user.mention}, you failed to solve the captcha!\n\n"
@@ -174,8 +175,8 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
                 return
             markup = await MakeCaptchaMarkup(cb.message["reply_markup"]["inline_keyboard"], __emoji, "❌")
             await cb.message.edit_caption(
-                caption=f"{cb.from_user.mention}, select all the emojis you can see in the picture. "
-                        f"You are allowed only ({n}) mistakes.",
+                caption=f"{cb.from_user.mention}, pilih semua emoji yang dapat Anda lihat di gambar."
+                        f"Anda hanya diperbolehkan ({n}) mistakes.",
                 reply_markup=InlineKeyboardMarkup(markup)
             )
             return
@@ -184,7 +185,7 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
             markup = await MakeCaptchaMarkup(cb.message["reply_markup"]["inline_keyboard"], __emoji, "✅")
             await cb.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(markup))
             if not CaptchaDB.get(cb.from_user.id).get("emojis"):
-                await cb.answer("You Passed the Captcha!", show_alert=True)
+                await cb.answer("Anda Melewati Captcha!", show_alert=True)
                 del CaptchaDB[cb.from_user.id]
                 try:
                     UserOnChat = await bot.get_chat_member(user_id=cb.from_user.id, chat_id=cb.message.chat.id)
