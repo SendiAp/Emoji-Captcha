@@ -1,0 +1,52 @@
+{
+    "name": "Bot Telegram Captcha oleh @pikyus1.",
+    "description": "Bot Telegram untuk memverifikasi anggota grup baru dengan Emojis Captcha. Made by @pikyus1.",
+    "keywords": [
+        "telegram",
+        "emoji",
+        "captcha",
+        "bot"
+    ],
+    "repository": "https://github.com/SendiAp/Emoji-Captcha",
+    "website": "https://telegram.dog/pikyus1",
+    "success_url": "https://t.me/fckyoupeople1",
+    "env": {
+        "API_ID": {
+            "description": "Dapatkan nilai ini dari my.telegram.org"
+        },
+        "API_HASH": {
+            "description": "Dapatkan nilai ini dari my.telegram.org"
+        },
+        "BOT_TOKEN": {
+            "description": "Dapatkan Bot Token Di @BotFather"
+        },
+        "MONGODB_URI": {
+            "description": "URI MongoDB untuk Menyimpan Pengaturan Obrolan. Video Tutorialnya Disini: https://www.youtube.com/watch?v=aXlF80Cn7iU"
+        },
+        "OWNER_ID": {
+            "description": "ID Pengguna Telegram Anda untuk menggunakan perintah Admin.",
+            "required": false
+        },
+        "SESSION_NAME": {
+            "description": "Nama Sesi Bot tanpa Spasi.",
+            "required": false
+        },
+        "GROUP_CHAT_ID": {
+            "description": "ID Grup Telegram Anda tempat bot akan meminta verifikasi oleh Captcha."
+        },
+        "CAPTCHA_API_TOKEN": {
+            "description": "Membutuhkan Token API Captcha untuk mendapatkan Captcha. Dapatkan ini dari https://t.me/pikyus1 !!"
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
