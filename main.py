@@ -26,10 +26,13 @@ async def start_handler(_, event: Message):
                            f"__Captcha ini Dengan Variasi Emoji Kalian Hanya Menebak Emoji Yang Ada Digambar Lalu Kalian Menekan Tombol Yang Disediakan__")
     buttons=[
         [
-            Button.Url("Channel",
-                       "https://github.com/apisuserbot/King-Userbot")],
-        ]
-    )
+            Button.Url(
+                       text="String Session",
+                       url="https://github.com/apisuserbot/King-Userbot"
+            ) 
+        ] 
+    ] 
+    ) 
 
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
