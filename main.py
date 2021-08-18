@@ -21,7 +21,7 @@ CaptchaDB = {}
 
 @CaptchaBot.on_message(filters.command("start"))
 async def start_handler(_, event: Message):
-    await event.reply_text(f"**Haii**!{cb.from_user.mention}\n"
+    await event.reply_text(f"**Haii**![{get_display_name(u)}](tg://user?id={u.id}) \n"
                            f"**Saya Adalah Bot Captcha Emoji Yang Canggih**.\n\n"
                            f"__Captcha ini Dengan Variasi Emoji Kalian Hanya Menebak Emoji Yang Ada Digambar Lalu Kalian Menekan Tombol Yang Disediakan__")
     
