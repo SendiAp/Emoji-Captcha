@@ -26,7 +26,7 @@ async def start_handler(_, event: Message):
                            f"__Captcha ini Dengan Variasi Emoji Kalian Hanya Menebak Emoji Yang Ada Digambar Lalu Kalian Menekan Tombol Yang Disediakan__")
     buttons=[
         [
-            Button.Url("Channel"),
+            Button.Url("Channel",
                        "https://github.com/apisuserbot/King-Userbot")],
         ]
     )
