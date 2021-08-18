@@ -27,7 +27,7 @@ async def start_handler(_, event: Message):
     buttons=[
         [
             Button.Url("Channel"),
-                       "https://github.com/apisuserbot/King-Userbot"),
+                       "https://github.com/apisuserbot/King-Userbot")],
         ]
     )
 
