@@ -21,9 +21,15 @@ CaptchaDB = {}
 
 @CaptchaBot.on_message(filters.command("start"))
 async def start_handler(_, event: Message):
-    await event.reply_text(f"Haii!!**Saya Adalah Bot Captcha Yang Canggih**.\n\n"
-                           f"__Captcha ini Dengan Variasi Emoji,Kalian Hanya Menebak Emoji Yang Ada Digambar__\n"
-                           f"__Lalu Kalian Menekan Tombol Yang Disediakan__.")
+    await event.reply_text(f"**Haii**!{cb.from_user.mention}\n"
+                           f"**Saya Adalah Bot Captcha Emoji Yang Canggih**.\n\n"
+                           f"__Captcha ini Dengan Variasi Emoji Kalian Hanya Menebak Emoji Yang Ada Digambar Lalu Kalian Menekan Tombol Yang Disediakan__")
+    buttons=[
+        [
+            Button.Url("Channel"),
+                       "https://github.com/apisuserbot/King-Userbot"),
+        ]
+    )
 
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
@@ -147,8 +153,8 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
                 __message = await bot.send_photo(
                     chat_id=cb.message.chat.id,
                     photo=data["DownloadURL"],
-                    caption=f"{cb.from_user.mention}, select all the emojis you can see in the picture. "
-                            f"You are allowed only (3) mistakes.",
+                    caption=f"{cb.from_user.mention}, pilih semua emoji yang dapat Anda lihat di gambar."
+                            f"Anda hanya diperbolehkan (3) kesalahan.",
                     reply_markup=InlineKeyboardMarkup(markup)
                 )
                 CaptchaDB[cb.from_user.id]["message_id"] = __message.message_id
