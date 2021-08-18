@@ -24,12 +24,7 @@ async def start_handler(_, event: Message):
     await event.reply_text(f"**Haii**!{cb.from_user.mention}\n"
                            f"**Saya Adalah Bot Captcha Emoji Yang Canggih**.\n\n"
                            f"__Captcha ini Dengan Variasi Emoji Kalian Hanya Menebak Emoji Yang Ada Digambar Lalu Kalian Menekan Tombol Yang Disediakan__")
-    buttons=[
-        [
-            Button.Url(
-                       text="String Session",
-                       url="https://github.com/apisuserbot/King-Userbot")],
-
+    
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
     if (event.chat.id != Config.GROUP_CHAT_ID) or (event.from_user.is_bot is True):
@@ -94,7 +89,7 @@ async def buttons_handlers(bot: Client, cb: CallbackQuery):
             await cb.answer("Pesan Ini Bukan Untuk Anda!", show_alert=True)
             return
         await cb.message.edit("Menghasilkan Captcha...")
-        print("Fetching Captcha JSON Data ...")
+        print("Mengambil Data JSON Captcha ...")
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://api.abirhasan.wtf/captcha?token={Config.CAPTCHA_API_TOKEN}") as res:
                 if res.status != 200:
