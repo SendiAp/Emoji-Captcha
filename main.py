@@ -27,7 +27,6 @@ async def start_handler(_, event: Message):
     reply_markup=InlineKeyboardMarkup([
         [InlineKeyboardButton("ᴋʟɪᴋ ᴅɪꜱɪɴɪ", url="https://t.me/fckyoupeople1")]
     ])
-)
 
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
