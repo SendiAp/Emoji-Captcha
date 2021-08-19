@@ -36,7 +36,6 @@ async def start_handler(_, event: Message):
             ]
         ]
     )
-)
 
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
