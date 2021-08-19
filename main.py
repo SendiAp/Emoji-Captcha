@@ -22,14 +22,14 @@ CaptchaDB = {}
 @CaptchaBot.on_message(filters.command('start') & filters.private)
 async def start(bot, message):
     await message.reply(
-        text=f"**Hi {message.chat.first_name}!** \n\nThis is **ClickyFly URL Shorter Bot**. Just send me any big link and get short link.",
+        text=f"**Haii!!{message.chat.first_name}!**\n\n😍 **Saya Adalah Bot Captcha Emoji Yang Canggih**.\n\n**Saya akan meminta Anggota Grup baru untuk memverifikasi mereka dengan memecahkan captcha emoji.",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('Bots Updates Channel', url='https://t.me/fckyoupeople1')
+                    InlineKeyboardButton('➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘꜱ ➕', url='https://t.me/CaptchaEmojiBot?startgroup=true')
                 ],
                 [
-                    InlineKeyboardButton('Support Group', url='https://t.me/Rose_Userbot')
+                    InlineKeyboardButton('🌹 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🌹', url='https://t.me/fckyoupeople1')
                 ]
             ]
         )
