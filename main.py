@@ -19,14 +19,21 @@ CaptchaBot = Client(
 CaptchaDB = {}
 
 
-@CaptchaBot.on_message(filters.command("start"))
-async def start_handler(_, event: Message):
-    await event.reply_text(f"**Haii**!**Saya Adalah Bot Captcha Emoji Yang Canggih**\n"
-                           f"Tambahkan Saya Kegrub Kamu,Atau Saya Akan Bertindak\n\n"
-                           f"__Bot By :__ @fckyoupeople1 / @pikyus1")
-    reply_markup=InlineKeyboardMarkup([
-        [InlineKeyboardButton("Channel", url="https://t.me/fckyoupeople1")]
-    ])
+@CaptchaBot.on_message(filters.command('start') & filters.private)
+async def start(bot, message):
+    await message.reply(
+        text=f"**Hi {message.chat.first_name}!** \n\nThis is **ClickyFly URL Shorter Bot**. Just send me any big link and get short link.",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('Bots Updates Channel', url='https://t.me/fckyoupeople1')
+                ],
+                [
+                    InlineKeyboardButton('Support Group', url='https://t.me/Rose_Userbot')
+                ]
+            ]
+        )
+    )
 
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
