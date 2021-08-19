@@ -24,7 +24,20 @@ async def start_handler(_, event: Message):
     await event.reply_text(f"**Haii**!Kawan\n"
                            f"**Saya Adalah Bot Captcha Emoji Yang Canggih**.\n\n"
                            f"__Captcha ini Dengan Variasi Emoji Kalian Hanya Menebak Emoji Yang Ada Digambar Lalu Kalian Menekan Tombol Yang Disediakan__")
-    
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Support Group", url="https://t.me/Rose_Userbot"),
+                        InlineKeyboardButton("Update Channel", url="https://t.me/fckyoupeople1")
+                    ],
+                    [
+                        InlineKeyboardButton("Source Code", url="https://github.com/AbirHasan2005/PyroFilesStoreBot"),
+                        InlineKeyboardButton("Owner", url="https://t.me/pikyus1")
+                    ]
+                ]
+            )
+        )
+
 @CaptchaBot.on_chat_member_updated()
 async def welcome_handler(bot: Client, event: Message):
     if (event.chat.id != Config.GROUP_CHAT_ID) or (event.from_user.is_bot is True):
