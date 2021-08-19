@@ -21,11 +21,11 @@ CaptchaDB = {}
 
 @CaptchaBot.on_message(filters.command("start"))
 async def start_handler(_, event: Message):
-    await event.reply_text(f"**Haii**!Kawan\n"
-                           f"**Saya Adalah Bot Captcha Emoji Yang Canggih**.\n\n"
-                           f"__Captcha ini Dengan Variasi Emoji Kalian Hanya Menebak Emoji Yang Ada Digambar Lalu Kalian Menekan Tombol Yang Disediakan__")
+    await event.reply_text(f"**Haii**!**Saya Adalah Bot Captcha Emoji Yang Canggih**\n"
+                           f"Tambahkan Saya Kegrub Kamu,Atau Saya Akan Bertindak\n\n"
+                           f"__Bot By :__ @fckyoupeople1 / @pikyus1")
     reply_markup=InlineKeyboardMarkup([
-        [InlineKeyboardButton("ᴋʟɪᴋ ᴅɪꜱɪɴɪ", url="https://t.me/fckyoupeople1")]
+        [InlineKeyboardButton("Channel", url="https://t.me/fckyoupeople1")]
     ])
 
 @CaptchaBot.on_chat_member_updated()
